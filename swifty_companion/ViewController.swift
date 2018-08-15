@@ -22,6 +22,7 @@ class Info {
     var location: String?
     var coalition: String?
     var projects = [(String, String)]()
+    var skills = [(String, String)]()
     
     init(json_user: NSDictionary, json_coal: [NSDictionary])
     {
@@ -86,6 +87,25 @@ class Info {
             }
         }
         print(projects)
+        var skillDict = [NSDictionary]()
+        if let projects_users = json_user["cursus_users"] {
+            for project in (projects_users as! [NSDictionary]) {
+                if (project["cursus_id"] as! Int) == 1 {
+                    if let skills = (project["skills"] as? [NSDictionary]) {
+                        skillDict = skills
+                    }
+                }
+            }
+        }
+        for skill in skillDict {
+            var new_skill = ("","")
+            let level = skill["level"] as? Double
+            new_skill.1 = level != nil ? String(level!) : "-"
+            let name = skill["name"] as? String
+            new_skill.0 = name != nil ? name! : ""
+            self.skills.append(new_skill)
+        }
+        print(skills)
     }
 }
 

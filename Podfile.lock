@@ -1,16 +1,26 @@
 PODS:
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
+  - DDSpiderChart (0.3)
   - OAuthSwift (1.2.2)
 
 DEPENDENCIES:
-  - OAuthSwift (~> 1.2.0)
+  - Charts
+  - DDSpiderChart
+  - OAuthSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Charts
+    - DDSpiderChart
     - OAuthSwift
 
 SPEC CHECKSUMS:
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  DDSpiderChart: 6866128fb95f7d8f2f880f5a38faedaa3463780c
   OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
 
-PODFILE CHECKSUM: e30e6718ae78e8a2e4c4ff817e5b2bd696255e37
+PODFILE CHECKSUM: b0962e467214491ff17eefd16dc878861eab71bc
 
 COCOAPODS: 1.5.3

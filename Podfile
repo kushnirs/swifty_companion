@@ -6,5 +6,7 @@ target 'swifty_companion' do
   use_frameworks!
 
   # Pods for swifty_companion
-pod 'OAuthSwift', '~> 1.2.0'
+pod 'Charts'
+pod 'OAuthSwift'
+pod 'DDSpiderChart'
 end

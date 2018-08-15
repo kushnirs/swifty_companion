@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Charts
+import DDSpiderChart
 
 class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDelegate {
 
@@ -33,6 +35,8 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBOutlet weak var projectTableView: UITableView!
+    
+    @IBOutlet weak var skillsChartView: DDSpiderChartView!
     
     var student: Info?
     
@@ -114,11 +118,13 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
             }
         }
         
+        
+    
+        
         // Do any additional setup after loading the view.
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     
