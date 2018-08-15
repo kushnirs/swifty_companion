@@ -18,12 +18,14 @@ class Info {
     var wallet: String?
     var corrections: String?
     var grade: String?
-    var coalition: Int?
     var level: String?
     var location: String?
+    var coalition: String?
+    var projects = [(String, String)]()
     
-    init(json_user: NSDictionary)
+    init(json_user: NSDictionary, json_coal: [NSDictionary])
     {
+        //MARK - add basic information about student
         if let displayname = (json_user["displayname"] as? String) {
             self.displayname = displayname
         }
@@ -58,10 +60,32 @@ class Info {
         if let location = json_user["location"] {
             self.location = location as? String
         }
-//        if let coalition = json_coal["coalition"] as? Int {
-//            self.coalition = coalition
-//        }
-    
+        
+        //MARK - add coalition
+        if (json_coal.count > 0) {
+            if let coalition = json_coal[0]["name"] {
+                self.coalition = coalition as? String
+            }
+        }
+        
+        //MARK - add project iformation
+        if let projects_users = json_user["projects_users"] {
+            for project in (projects_users as! [NSDictionary]) {
+                if ((project["cursus_ids"] as! [Int])[0]) == 1 {
+                    var new_project = ("","")
+                    let mark = project["final_mark"] as? Int
+                    new_project.1 = mark != nil ? String(mark!) + "%" : "-"
+                    if let project_info = project["project"] {
+//                        print((project_info as! NSDictionary)["parent_id"] as? Int)
+                        if (project_info as! NSDictionary)["parent_id"] as? Int == nil {
+                            new_project.0 = (project_info as! NSDictionary)["name"] as! String
+                            self.projects.append(new_project)
+                        }
+                    }
+                }
+            }
+        }
+        print(projects)
     }
 }
 
@@ -73,17 +97,60 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    let oauthswift = OAuth1Swift(consumerKey: "", consumerSecret: "")
+    
+    var token = Dictionary<String,Any>()
+    
+    var student: Info?
+    
+//    @IBAction func action(_ sender: Any)
+//    {
+//        if self.outlet.text != "" {
+//            errorLabel.isHidden = true
+//        }
+//
+//        self.getRequest(login: outlet.text!,
+//                        oauthswift: oauthswift,
+//                        param: token,
+//                        completionHandler: {
+//                            self.performSegue(withIdentifier: "segue", sender: self) })
+//    }
+    
+    
     @IBAction func action(_ sender: Any)
     {
+        var user_id = String()
+        var coalition = [NSDictionary()]
+        
+        let myCompletionHandler : (OAuthSwiftResponse) -> Void = {
+            (user: OAuthSwiftResponse) in
+            let json_user = try! user.jsonObject() as! NSDictionary
+            if let cursus = json_user["campus_users"] as? [NSDictionary] {
+                if let json_id = cursus[0]["user_id"] as? NSNumber {
+                    user_id = json_id.stringValue
+                    print(user_id)
+                }
+            }
+            self.getRequest(url: "https://api.intra.42.fr/v2/users/" + user_id + "/coalitions",
+                            oauthswift: self.oauthswift,
+                            param: self.token,
+                            completionHandler: {
+                                (user: OAuthSwiftResponse) in
+                                coalition = try! user.jsonObject() as! [NSDictionary]
+                                self.student = Info(json_user: json_user, json_coal: coalition)
+                                self.performSegue(withIdentifier: "segue", sender: self)
+                            })
+        }
+        
+        self.getRequest(url: "https://api.intra.42.fr/v2/users/" + outlet.text!,
+                        oauthswift: oauthswift,
+                        param: token,
+                        completionHandler: myCompletionHandler)
+        
         if self.outlet.text != "" {
             errorLabel.isHidden = true
         }
-        
-        self.getRequest(login: outlet.text!,
-                        oauthswift: oauthswift,
-                        param: token,
-                        completionHandler: {
-                            self.performSegue(withIdentifier: "segue", sender: self) })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -91,10 +158,6 @@ class ViewController: UIViewController {
         let secondController = segue.destination as! SecondViewController
         secondController.student = self.student
     }
-    
-    let oauthswift = OAuth1Swift(consumerKey: "", consumerSecret: "")
-    var token = Dictionary<String,Any>()
-    var student: Info?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,56 +185,51 @@ class ViewController: UIViewController {
     func postRequest(parameter: [String: String])
     {
         let _ = self.oauthswift.client.post("https://api.intra.42.fr/oauth/token", parameters: parameter,
-                                            success: { response in
-                                                print(response.string!)
-                                                if let token = (try?  response.jsonObject() as! Dictionary<String,Any>) {
-                                                    self.token = token
-                                                }
-                                            },
-                                            failure: { error in
-                                                print("***ERROR*** \(error)")
-                                            }
+                success: { response in
+                    print(response.string!)
+                    if let token = (try?  response.jsonObject() as! Dictionary<String,Any>) {
+                        self.token = token
+                    }
+                },
+                failure: { error in
+                    print("***ERROR*** \(error)")
+                }
         )
     }
     
-    func getRequest(login: String, oauthswift: OAuthSwift, param: Dictionary<String,Any>, completionHandler: @escaping () -> Void)
-    {
-        let _ = oauthswift.client.get("https://api.intra.42.fr/v2/users/" + login, parameters: param,
-                                      success: { response in
-                                        if let tmp = (try? response.jsonObject() as? NSDictionary) {
-                                            if let js = tmp{
-//                                                print(js)
-//                                                user = js
-                                                self.student = Info(json_user: js)
-                                            }
-                                        }
-                                        completionHandler()
-                                    },
-                                    failure: { error in
-                                        print("ERROR \(error.localizedDescription)")
-                                        self.errorLabel.isHidden = false
-                                        self.outlet.text = ""
-                                    }
-        )
-        
-//        let _ = oauthswift.client.get("https://api.intra.42.fr/v2/users/:user_id/coalitions", parameters: param,
+//    func getRequest(login: String, oauthswift: OAuthSwift, param: Dictionary<String,Any>, completionHandler: @escaping () -> Void)
+//    {
+//        let _ = oauthswift.client.get("https://api.intra.42.fr/v2/users/" + login, parameters: param,
 //                                      success: { response in
 //                                        if let tmp = (try? response.jsonObject() as? NSDictionary) {
 //                                            if let js = tmp{
-//                                                print(js)
-//                                                coalition = js
+////                                                print(js)
+////                                                user = js
+//                                                self.student = Info(json_user: js)
 //                                            }
 //                                        }
 //                                        completionHandler()
-//        },
-//                                      failure: { error in
+//                                    },
+//                                    failure: { error in
 //                                        print("ERROR \(error.localizedDescription)")
 //                                        self.errorLabel.isHidden = false
 //                                        self.outlet.text = ""
-//        }
+//                                    }
 //        )
-////
-////        self.student = Info(json_user: user!, json_coal: coalition!)
+//    }
+    
+    func getRequest(url: String, oauthswift: OAuthSwift, param: Dictionary<String,Any>, completionHandler: @escaping (OAuthSwiftResponse) -> Void)
+    {
+        let _ = oauthswift.client.get(url, parameters: param,
+                success: { response in
+                    completionHandler(response)
+                },
+                failure: { error in
+                    print("ERROR \(error.localizedDescription)")
+                    self.errorLabel.isHidden = false
+                    self.outlet.text = ""
+                }
+        )
     }
     
     override func didReceiveMemoryWarning() {

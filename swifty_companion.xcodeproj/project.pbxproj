@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08003F1AD739AFFC56042AD7 /* Pods_swifty_companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57640EF7A909C76AFAE8DF58 /* Pods_swifty_companion.framework */; };
+		9D9923F221233FB10051C288 /* SwiftyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9923F121233FB10051C288 /* SwiftyTableViewCell.swift */; };
 		9DD455972119E56E0020ADE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD455962119E56E0020ADE3 /* AppDelegate.swift */; };
 		9DD455992119E56E0020ADE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD455982119E56E0020ADE3 /* ViewController.swift */; };
 		9DD4559C2119E56E0020ADE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DD4559A2119E56E0020ADE3 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		3C084520288BCA1E08A9FE33 /* Pods-swifty_companion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty_companion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swifty_companion/Pods-swifty_companion.debug.xcconfig"; sourceTree = "<group>"; };
 		57640EF7A909C76AFAE8DF58 /* Pods_swifty_companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swifty_companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9923F121233FB10051C288 /* SwiftyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTableViewCell.swift; sourceTree = "<group>"; };
 		9DD455932119E56E0020ADE3 /* swifty_companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swifty_companion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD455962119E56E0020ADE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DD455982119E56E0020ADE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				9DD455982119E56E0020ADE3 /* ViewController.swift */,
 				9DD455A82119E6930020ADE3 /* SecondViewController.swift */,
 				9DD4559A2119E56E0020ADE3 /* Main.storyboard */,
+				9D9923F121233FB10051C288 /* SwiftyTableViewCell.swift */,
 				9DD4559D2119E56F0020ADE3 /* Assets.xcassets */,
 				9DD4559F2119E56F0020ADE3 /* LaunchScreen.storyboard */,
 				9DD455A22119E56F0020ADE3 /* Info.plist */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DD455A92119E6930020ADE3 /* SecondViewController.swift in Sources */,
+				9D9923F221233FB10051C288 /* SwiftyTableViewCell.swift in Sources */,
 				9DD455992119E56E0020ADE3 /* ViewController.swift in Sources */,
 				9DD455972119E56E0020ADE3 /* AppDelegate.swift in Sources */,
 			);

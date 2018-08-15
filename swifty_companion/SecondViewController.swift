@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDelegate {
 
     @IBOutlet weak var userIMG: UIImageView!
     
@@ -28,11 +28,35 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var coalitionLable: UILabel!
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
+    @IBOutlet weak var projectTableView: UITableView!
+    
     var student: Info?
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        let count = student != nil ? student!.projects.count : 0
+        return count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellIdentifier", for: indexPath) as! SwiftyTableViewCell
+        if student != nil {
+            cell.projectNameLabel.text = student!.projects[indexPath.row].0
+            cell.projectMarkLabel.text = student!.projects[indexPath.row].1
+        }
+        return cell
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.projectTableView.rowHeight = 44.0
+    
         userIMG.layer.cornerRadius = userIMG.frame.size.width / 2.4;
         userIMG.clipsToBounds = true;
         if  student != nil {
@@ -65,6 +89,28 @@ class SecondViewController: UIViewController {
                 } catch let err {
                     print("Error : \(err.localizedDescription)")
                 }
+            }
+            if student!.coalition != nil {
+                coalitionLable.isHidden = false
+                if student!.coalition == "The Hive" {
+                    coalitionLable.text = student!.coalition
+                    backgroundImageView.image = UIImage(named: "hive")
+                }
+                else if student!.coalition == "The Union" {
+                    coalitionLable.text = student!.coalition
+                    backgroundImageView.image = UIImage(named: "union")
+                }
+                else if student!.coalition == "The Empire" {
+                    coalitionLable.text = student!.coalition
+                    backgroundImageView.image = UIImage(named: "empire")
+                }
+                else if student!.coalition == "The Allience" {
+                    coalitionLable.text = student!.coalition
+                    backgroundImageView.image = UIImage(named: "Alliance")
+                }
+            }
+            else {
+                backgroundImageView.image = UIImage(named: "42")
             }
         }
         
