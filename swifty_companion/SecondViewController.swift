@@ -120,12 +120,16 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
         
         
     
-        
+        //MARK - add RadarChart
+        skillsChartView.axes = student!.skillsName.map { attributedAxisLabelSample1($0) }
+        skillsChartView.addDataSet(values: student!.skillsLevel, color: .cyan)
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        
+    func attributedAxisLabelSample1(_ label: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString()
+        attributedString.append(NSAttributedString(string: label, attributes: [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "AvenirNextCondensed-Bold", size: 10)!]))
+        return attributedString
     }
     
     override func didReceiveMemoryWarning() {

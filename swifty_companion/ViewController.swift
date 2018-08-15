@@ -22,7 +22,9 @@ class Info {
     var location: String?
     var coalition: String?
     var projects = [(String, String)]()
-    var skills = [(String, String)]()
+//    var skills = [(String, String)]()
+    var skillsName = [String]()
+    var skillsLevel = [Float]()
     
     init(json_user: NSDictionary, json_coal: [NSDictionary])
     {
@@ -98,14 +100,20 @@ class Info {
             }
         }
         for skill in skillDict {
-            var new_skill = ("","")
+//            var new_skill = ("","")
             let level = skill["level"] as? Double
-            new_skill.1 = level != nil ? String(level!) : "-"
+//            new_skill.1 = level != nil ? String(level!) : "-"
+            if level != nil {
+             self.skillsLevel.append(Float(level!) / 10)
+            }
             let name = skill["name"] as? String
-            new_skill.0 = name != nil ? name! : ""
-            self.skills.append(new_skill)
+//            new_skill.0 = name != nil ? name! : ""
+            if name != nil {
+                self.skillsName.append(name!)
+            }
+//            self.skills.append(new_skill)
         }
-        print(skills)
+        print(skillsLevel)
     }
 }
 
@@ -123,19 +131,6 @@ class ViewController: UIViewController {
     var token = Dictionary<String,Any>()
     
     var student: Info?
-    
-//    @IBAction func action(_ sender: Any)
-//    {
-//        if self.outlet.text != "" {
-//            errorLabel.isHidden = true
-//        }
-//
-//        self.getRequest(login: outlet.text!,
-//                        oauthswift: oauthswift,
-//                        param: token,
-//                        completionHandler: {
-//                            self.performSegue(withIdentifier: "segue", sender: self) })
-//    }
     
     
     @IBAction func action(_ sender: Any)
@@ -216,27 +211,6 @@ class ViewController: UIViewController {
                 }
         )
     }
-    
-//    func getRequest(login: String, oauthswift: OAuthSwift, param: Dictionary<String,Any>, completionHandler: @escaping () -> Void)
-//    {
-//        let _ = oauthswift.client.get("https://api.intra.42.fr/v2/users/" + login, parameters: param,
-//                                      success: { response in
-//                                        if let tmp = (try? response.jsonObject() as? NSDictionary) {
-//                                            if let js = tmp{
-////                                                print(js)
-////                                                user = js
-//                                                self.student = Info(json_user: js)
-//                                            }
-//                                        }
-//                                        completionHandler()
-//                                    },
-//                                    failure: { error in
-//                                        print("ERROR \(error.localizedDescription)")
-//                                        self.errorLabel.isHidden = false
-//                                        self.outlet.text = ""
-//                                    }
-//        )
-//    }
     
     func getRequest(url: String, oauthswift: OAuthSwift, param: Dictionary<String,Any>, completionHandler: @escaping (OAuthSwiftResponse) -> Void)
     {
