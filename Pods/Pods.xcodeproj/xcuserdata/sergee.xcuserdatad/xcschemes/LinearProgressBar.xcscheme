@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4D7401C40EAA1A1B76D58807B857CBF"
-               BuildableName = "Pods_swifty_companion.framework"
-               BlueprintName = "Pods-swifty_companion"
+               BlueprintIdentifier = "6D093377B6951AC5507B8F910B581132"
+               BuildableName = "LinearProgressBar.framework"
+               BlueprintName = "LinearProgressBar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4D7401C40EAA1A1B76D58807B857CBF"
-            BuildableName = "Pods_swifty_companion.framework"
-            BlueprintName = "Pods-swifty_companion"
+            BlueprintIdentifier = "6D093377B6951AC5507B8F910B581132"
+            BuildableName = "LinearProgressBar.framework"
+            BlueprintName = "LinearProgressBar"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -169,7 +169,7 @@
                                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coalition" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlD-QC-EBW">
-                                                <rect key="frame" x="288" y="218" width="117" height="29"/>
+                                                <rect key="frame" x="288" y="221" width="117" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -256,13 +256,44 @@
                                                 <nil key="highlightedColor"/>
                                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
+                                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8s-9M-vDF" customClass="LinearProgressBar" customModule="LinearProgressBar">
+                                                <rect key="frame" x="7" y="180" width="400" height="41"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                        <color key="value" red="0.38554873099999998" green="0.83955314749999999" blue="0.85557645920000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barThickness">
+                                                        <real key="value" value="29"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="barPadding">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="trackPadding">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="progressValue">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xj-8H-Feh">
+                                                <rect key="frame" x="144" y="190" width="111" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="sox-kD-cc7" firstAttribute="top" secondItem="GEG-zL-Q4C" secondAttribute="top" constant="290" id="0S7-sL-OM0"/>
                                             <constraint firstItem="sox-kD-cc7" firstAttribute="leading" secondItem="GEG-zL-Q4C" secondAttribute="leading" constant="57.876200640296247" id="2Zo-UF-bT5"/>
                                             <constraint firstItem="jyc-zR-BHz" firstAttribute="leading" secondItem="ZIX-Q6-3Ew" secondAttribute="leading" id="4fG-mn-r4j"/>
-                                            <constraint firstItem="ZlD-QC-EBW" firstAttribute="top" secondItem="LYt-0S-zDr" secondAttribute="bottom" constant="56" id="6Vu-HE-geA"/>
+                                            <constraint firstItem="ZlD-QC-EBW" firstAttribute="top" secondItem="LYt-0S-zDr" secondAttribute="bottom" constant="59" id="6Vu-HE-geA"/>
+                                            <constraint firstAttribute="trailing" secondItem="i8s-9M-vDF" secondAttribute="trailing" constant="7" id="6Xp-l9-ukC"/>
                                             <constraint firstItem="TAl-PF-kL2" firstAttribute="top" secondItem="GEG-zL-Q4C" secondAttribute="top" constant="12" id="6gw-jL-BW2"/>
                                             <constraint firstAttribute="height" constant="936" id="8UA-qY-6hW"/>
                                             <constraint firstAttribute="trailing" secondItem="LYt-0S-zDr" secondAttribute="trailing" constant="9" id="9C5-lo-l9U"/>
@@ -272,16 +303,19 @@
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zcn-te-UCE" secondAttribute="trailing" id="DIx-Wa-XdI"/>
                                             <constraint firstItem="LR9-tJ-Oj7" firstAttribute="top" secondItem="Ca0-hL-X1X" secondAttribute="bottom" constant="8" symbolic="YES" id="FDo-uh-NRf"/>
                                             <constraint firstItem="LYt-0S-zDr" firstAttribute="top" secondItem="GEG-zL-Q4C" secondAttribute="top" constant="143" id="FVB-sN-I0m"/>
+                                            <constraint firstItem="7xj-8H-Feh" firstAttribute="leading" secondItem="GEG-zL-Q4C" secondAttribute="leading" constant="144" id="GBw-iD-erg"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lUi-WI-WpZ" secondAttribute="trailing" constant="20" symbolic="YES" id="KAW-U5-qyt"/>
                                             <constraint firstAttribute="trailing" secondItem="sox-kD-cc7" secondAttribute="trailing" id="NHg-8k-Sue"/>
                                             <constraint firstItem="Ca0-hL-X1X" firstAttribute="top" secondItem="CgK-kG-8ih" secondAttribute="bottom" constant="8" symbolic="YES" id="RP7-Ob-dWH"/>
                                             <constraint firstAttribute="bottom" secondItem="sox-kD-cc7" secondAttribute="bottom" constant="348" id="RZ7-7M-KW2"/>
                                             <constraint firstItem="ZlD-QC-EBW" firstAttribute="leading" secondItem="TAl-PF-kL2" secondAttribute="leading" constant="-30" id="RqL-Nr-U7m"/>
                                             <constraint firstItem="LYt-0S-zDr" firstAttribute="leading" secondItem="TAl-PF-kL2" secondAttribute="leading" id="S6v-y4-OdD"/>
+                                            <constraint firstAttribute="bottom" secondItem="i8s-9M-vDF" secondAttribute="bottom" constant="715" id="Tv6-wt-r6q"/>
                                             <constraint firstItem="TAl-PF-kL2" firstAttribute="top" secondItem="jyc-zR-BHz" secondAttribute="top" id="Uua-33-pGB"/>
                                             <constraint firstItem="CgK-kG-8ih" firstAttribute="trailing" secondItem="TAl-PF-kL2" secondAttribute="trailing" id="VAx-1n-Rbn"/>
                                             <constraint firstItem="Zyx-Wg-ep1" firstAttribute="centerX" secondItem="sox-kD-cc7" secondAttribute="centerX" id="WNs-kv-vkk"/>
                                             <constraint firstItem="zcn-te-UCE" firstAttribute="top" secondItem="sox-kD-cc7" secondAttribute="bottom" constant="15" id="Wf2-38-HHo"/>
+                                            <constraint firstItem="i8s-9M-vDF" firstAttribute="top" secondItem="ZIX-Q6-3Ew" secondAttribute="bottom" constant="15" id="Y06-tl-xUW"/>
                                             <constraint firstItem="CgK-kG-8ih" firstAttribute="leading" secondItem="TAl-PF-kL2" secondAttribute="leading" id="bbK-mt-LT6"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZIX-Q6-3Ew" secondAttribute="trailing" constant="20" symbolic="YES" id="bhA-vR-4p4"/>
                                             <constraint firstItem="Ca0-hL-X1X" firstAttribute="leading" secondItem="TAl-PF-kL2" secondAttribute="leading" id="cIa-rg-Tor"/>
@@ -289,7 +323,9 @@
                                             <constraint firstItem="Zyx-Wg-ep1" firstAttribute="trailing" secondItem="LG5-9B-lsE" secondAttribute="trailing" id="cex-jm-2UN"/>
                                             <constraint firstItem="sox-kD-cc7" firstAttribute="leading" secondItem="GEG-zL-Q4C" secondAttribute="leading" id="dhY-MM-CZB"/>
                                             <constraint firstItem="LYt-0S-zDr" firstAttribute="top" secondItem="WJ3-gc-NhN" secondAttribute="bottom" constant="4" id="eOI-jl-2Hl"/>
+                                            <constraint firstAttribute="trailing" secondItem="7xj-8H-Feh" secondAttribute="trailing" constant="159" id="fhb-AJ-1qf"/>
                                             <constraint firstItem="lUi-WI-WpZ" firstAttribute="top" secondItem="jyc-zR-BHz" secondAttribute="bottom" constant="8" symbolic="YES" id="g90-7t-P4g"/>
+                                            <constraint firstAttribute="bottom" secondItem="7xj-8H-Feh" secondAttribute="bottom" constant="725" id="g9B-bf-qcy"/>
                                             <constraint firstAttribute="bottom" secondItem="LG5-9B-lsE" secondAttribute="bottom" constant="2" id="gvm-cC-tlh"/>
                                             <constraint firstItem="CgK-kG-8ih" firstAttribute="top" secondItem="TAl-PF-kL2" secondAttribute="bottom" constant="7" id="jah-f4-zwP"/>
                                             <constraint firstItem="H9w-lz-oor" firstAttribute="top" secondItem="ZIX-Q6-3Ew" secondAttribute="bottom" constant="98" id="kfb-H6-hDd"/>
@@ -307,7 +343,9 @@
                                             <constraint firstItem="zcn-te-UCE" firstAttribute="leading" secondItem="GEG-zL-Q4C" secondAttribute="leading" constant="8" id="vTz-BR-icH"/>
                                             <constraint firstItem="ZlD-QC-EBW" firstAttribute="trailing" secondItem="TAl-PF-kL2" secondAttribute="trailing" id="wLv-WP-m0u"/>
                                             <constraint firstItem="jyc-zR-BHz" firstAttribute="leading" secondItem="lUi-WI-WpZ" secondAttribute="leading" id="wMB-av-Dbz"/>
+                                            <constraint firstItem="i8s-9M-vDF" firstAttribute="leading" secondItem="GEG-zL-Q4C" secondAttribute="leading" constant="7" id="wZq-0Y-yuu"/>
                                             <constraint firstItem="ZIX-Q6-3Ew" firstAttribute="top" secondItem="lUi-WI-WpZ" secondAttribute="bottom" constant="3" id="xMG-ds-UFo"/>
+                                            <constraint firstItem="7xj-8H-Feh" firstAttribute="top" secondItem="GEG-zL-Q4C" secondAttribute="top" constant="190" id="y9K-ZQ-5b4"/>
                                             <constraint firstAttribute="bottom" secondItem="LG5-9B-lsE" secondAttribute="bottom" constant="2" id="zft-BF-6WL"/>
                                             <constraint firstItem="Zyx-Wg-ep1" firstAttribute="top" secondItem="GEG-zL-Q4C" secondAttribute="top" id="zmc-dF-MGX"/>
                                         </constraints>
@@ -349,6 +387,8 @@
                         <outlet property="displaynameLabel" destination="lUi-WI-WpZ" id="8ME-Yu-rx2"/>
                         <outlet property="emailLabel" destination="Ca0-hL-X1X" id="xhV-jw-V7g"/>
                         <outlet property="gradeLabel" destination="LR9-tJ-Oj7" id="CfW-g9-QUq"/>
+                        <outlet property="levelLabel" destination="7xj-8H-Feh" id="ilu-mA-nh5"/>
+                        <outlet property="levelProgressBar" destination="i8s-9M-vDF" id="hKq-jw-rfG"/>
                         <outlet property="locationLabel" destination="ZIX-Q6-3Ew" id="PA1-Me-4mT"/>
                         <outlet property="loginLabel" destination="TAl-PF-kL2" id="Mwg-gh-DE6"/>
                         <outlet property="numberLabel" destination="CgK-kG-8ih" id="Pqx-4r-yNv"/>

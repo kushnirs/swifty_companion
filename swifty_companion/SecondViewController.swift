@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Charts
 import DDSpiderChart
+import LinearProgressBar
 
 class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDelegate {
 
@@ -37,6 +37,10 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
     @IBOutlet weak var projectTableView: UITableView!
     
     @IBOutlet weak var skillsChartView: DDSpiderChartView!
+    
+    @IBOutlet weak var levelProgressBar: LinearProgressBar!
+    
+    @IBOutlet weak var levelLabel: UILabel!
     
     var student: Info?
     
@@ -115,6 +119,15 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
             }
             else {
                 backgroundImageView.image = UIImage(named: "42")
+            }
+            if student!.level != nil {
+                let fraction = student!.level!.truncatingRemainder(dividingBy: 1)
+                let number = student!.level! - fraction
+                levelLabel.text = String(Int(number)) + " - " + String(Int(fraction * 100)) + "%"
+                levelProgressBar.progressValue = CGFloat(student!.level! * 100 / 16)
+            } else {
+                levelLabel.text = "0 - 0%"
+                levelProgressBar.progressValue = 0
             }
         }
         

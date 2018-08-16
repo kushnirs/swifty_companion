@@ -6,7 +6,7 @@ target 'swifty_companion' do
   use_frameworks!
 
   # Pods for swifty_companion
-pod 'Charts'
 pod 'OAuthSwift'
 pod 'DDSpiderChart'
+pod 'LinearProgressBar'
 end

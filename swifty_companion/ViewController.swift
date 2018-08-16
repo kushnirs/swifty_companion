@@ -18,7 +18,7 @@ class Info {
     var wallet: String?
     var corrections: String?
     var grade: String?
-    var level: String?
+    var level: Double?
     var location: String?
     var coalition: String?
     var projects = [(String, String)]()
@@ -56,7 +56,7 @@ class Info {
                 self.grade = "Grade: " + grade
             }
             if let level = cursus[0]["level"] {
-                self.level = level as? String
+                self.level = level as? Double
             }
             
         }
