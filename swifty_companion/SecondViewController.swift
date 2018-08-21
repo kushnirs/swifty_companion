@@ -30,7 +30,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
     
     @IBOutlet weak var locationLabel: UILabel!
     
-    @IBOutlet weak var coalitionLable: UILabel!
+    @IBOutlet weak var coalitionLabel: UILabel!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     
@@ -98,37 +98,42 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                     print("Error : \(err.localizedDescription)")
                 }
             }
+            
+            //MARK - edit coalitionLabel
             if student!.coalition != nil {
-                coalitionLable.isHidden = false
+                coalitionLabel.isHidden = false
                 if student!.coalition == "The Hive" {
-                    coalitionLable.text = student!.coalition
+                    coalitionLabel.text = student!.coalition
                     backgroundImageView.image = UIImage(named: "hive")
                 }
                 else if student!.coalition == "The Union" {
-                    coalitionLable.text = student!.coalition
+                    coalitionLabel.text = student!.coalition
                     backgroundImageView.image = UIImage(named: "union")
                 }
                 else if student!.coalition == "The Empire" {
-                    coalitionLable.text = student!.coalition
+                    coalitionLabel.text = student!.coalition
                     backgroundImageView.image = UIImage(named: "empire")
                 }
                 else if student!.coalition == "The Allience" {
-                    coalitionLable.text = student!.coalition
+                    coalitionLabel.text = student!.coalition
                     backgroundImageView.image = UIImage(named: "Alliance")
                 }
             }
             else {
                 backgroundImageView.image = UIImage(named: "42")
             }
+            
+            //MARK - edit levelLabel
             if student!.level != nil {
                 let fraction = student!.level!.truncatingRemainder(dividingBy: 1)
                 let number = student!.level! - fraction
-                levelLabel.text = String(Int(number)) + " - " + String(Int(fraction * 100)) + "%"
+                levelLabel.text = "level " + String(Int(number)) + " - " + String(Int(fraction * 100)) + "%"
                 levelProgressBar.progressValue = CGFloat(student!.level! * 100 / 16)
             } else {
-                levelLabel.text = "0 - 0%"
+                levelLabel.text = "level 0 - 0%"
                 levelProgressBar.progressValue = 0
             }
+            levelLabel.sizeToFit()
         }
         
         
