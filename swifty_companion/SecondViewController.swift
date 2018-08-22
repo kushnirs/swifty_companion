@@ -65,8 +65,11 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
         
         self.projectTableView.rowHeight = 44.0
     
+        // MARK: - edit userIMG form
         userIMG.layer.cornerRadius = userIMG.frame.size.width / 2.4;
         userIMG.clipsToBounds = true;
+        
+        // MARK: - edit student iformation labels
         if  student != nil {
             displaynameLabel.text = student!.displayname
             displaynameLabel.sizeToFit()
@@ -99,7 +102,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                 }
             }
             
-            //MARK - edit coalitionLabel
+            // MARK: - edit coalitionLabel
             if student!.coalition != nil {
                 coalitionLabel.isHidden = false
                 if student!.coalition == "The Hive" {
@@ -123,7 +126,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                 backgroundImageView.image = UIImage(named: "42")
             }
             
-            //MARK - edit levelLabel
+            // MARK: - edit levelLabel
             if student!.level != nil {
                 let fraction = student!.level!.truncatingRemainder(dividingBy: 1)
                 let number = student!.level! - fraction
@@ -133,20 +136,23 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                 levelLabel.text = "level 0 - 0%"
                 levelProgressBar.progressValue = 0
             }
-            levelLabel.sizeToFit()
         }
         
         
     
-        //MARK - add RadarChart
-        skillsChartView.axes = student!.skillsName.map { attributedAxisLabelSample1($0) }
-        skillsChartView.addDataSet(values: student!.skillsLevel, color: .cyan)
-        // Do any additional setup after loading the view.
+        // MARK: - add RadarChart
+//        skillsChartView.axes = student!.skillsName.map { attributedAxisLabelSample1($0) }
+//        skillsChartView.addDataSet(values: student!.skillsLevel, color: .cyan)
+        skillsChartView.axes = (student!.skills.map {$0.0}).map { attributedAxisLabelSample1($0) }
+        skillsChartView.addDataSet(values: (student!.skills.map {$0.1}).map {$0}, color: .cyan)
     }
 
     func attributedAxisLabelSample1(_ label: String) -> NSAttributedString {
         let attributedString = NSMutableAttributedString()
-        attributedString.append(NSAttributedString(string: label, attributes: [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "AvenirNextCondensed-Bold", size: 10)!]))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        
+        attributedString.append(NSAttributedString(string: label, attributes: [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "AvenirNextCondensed-Bold", size: 9)!, NSAttributedStringKey.paragraphStyle: paragraphStyle]))
         return attributedString
     }
     
