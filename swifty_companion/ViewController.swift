@@ -51,14 +51,14 @@ class Info {
             self.userIMG = urkKey
         }
         if let cursus = json_user["cursus_users"] as? [NSDictionary] {
-            
-            if let grade = cursus[0]["grade"] as? String {
-                self.grade = "Grade: " + grade + " 🎓"
+            if !cursus.isEmpty {
+                if let grade = cursus[0]["grade"] as? String {
+                    self.grade = "Grade: " + grade + " 🎓"
+                }
+                if let level = cursus[0]["level"] {
+                    self.level = level as? Double
+                }
             }
-            if let level = cursus[0]["level"] {
-                self.level = level as? Double
-            }
-            
         }
         if let location = json_user["location"] {
             self.location = location as? String
@@ -133,6 +133,12 @@ class ViewController: UIViewController {
     
     let oauthswift = OAuth1Swift(consumerKey: "", consumerSecret: "")
     
+    let Parameters = [
+        "grant_type" : "client_credentials",
+        "client_id" : "88056ff98224f93d83630aff6da5e7d8c5a8967a1f326c445dcf790f9294a714",
+        "client_secret" : "6ba9a01b314e6a14e6ab8f1160da21971e851781ffe8a75c778557c8db53ad86"
+    ]
+    
     var token = Dictionary<String,Any>()
     
     var student: Info?
@@ -146,7 +152,8 @@ class ViewController: UIViewController {
         var user_id = String()
         var coalition = [NSDictionary()]
         
-        if outlet.text! == "" {
+        if outlet.text!.isEmpty || outlet.text!.contains("/") {
+            self.outlet.text = ""
             activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             return
@@ -204,20 +211,18 @@ class ViewController: UIViewController {
         // MARK: - Add errorLabel content
         errorLabel.text = "⚠️ wrong login"
         
-        // MARK: Set parameter for access_token
-        let Parameters = [
-            "grant_type" : "client_credentials",
-            "client_id" : "88056ff98224f93d83630aff6da5e7d8c5a8967a1f326c445dcf790f9294a714",
-            "client_secret" : "6ba9a01b314e6a14e6ab8f1160da21971e851781ffe8a75c778557c8db53ad86"
-        ]
+        // MARK: Set timer to recreate token at expire date
+    
+        var gameTimer: Timer!
+        gameTimer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(postRequest), userInfo: nil, repeats: true)
         
         // MARK: - Call PostRequest func
-        postRequest(parameter: Parameters)
+       postRequest()
     }
 
-    func postRequest(parameter: [String: String])
+    func postRequest()
     {
-        let _ = self.oauthswift.client.post("https://api.intra.42.fr/oauth/token", parameters: parameter,
+        let _ = self.oauthswift.client.post("https://api.intra.42.fr/oauth/token", parameters: self.Parameters,
                 success: { response in
                     print(response.string!)
                     if let token = (try?  response.jsonObject() as! Dictionary<String,Any>) {
