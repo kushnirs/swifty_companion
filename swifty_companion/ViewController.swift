@@ -22,8 +22,6 @@ class Info {
     var location: String?
     var coalition: String?
     var projects = [(String, String)]()
-//    var skillsName = [String]()
-//    var skillsLevel = [Float]()
     var skills = [(String, Float)]()
     
     init(json_user: NSDictionary, json_coal: [NSDictionary])
@@ -105,13 +103,11 @@ class Info {
             let level = skill["level"] as? Double
             var tmp = ("", Float(0))
             if level != nil {
-//             self.skillsLevel.append(Float(level!) / 10)
-                tmp.1 = (Float(level!) / 10)
+                tmp.1 = (Float(level!) / 20)
             }
             let name = skill["name"] as? String
             if name != nil {
                 tmp.0 = name!.replacingOccurrences(of: " ", with: "\n")
-//                self.skillsName.append(name!.replacingOccurrences(of: " ", with: "\n"))
             }
             self.skills.append(tmp)
         }
@@ -220,7 +216,7 @@ class ViewController: UIViewController {
        postRequest()
     }
 
-    func postRequest()
+    @objc func postRequest()
     {
         let _ = self.oauthswift.client.post("https://api.intra.42.fr/oauth/token", parameters: self.Parameters,
                 success: { response in

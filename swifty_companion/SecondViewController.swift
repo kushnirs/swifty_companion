@@ -117,9 +117,9 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                     coalitionLabel.text = student!.coalition
                     backgroundImageView.image = UIImage(named: "empire")
                 }
-                else if student!.coalition == "The Allience" {
+                else if student!.coalition == "The Alliance" {
                     coalitionLabel.text = student!.coalition
-                    backgroundImageView.image = UIImage(named: "Alliance")
+                    backgroundImageView.image = UIImage(named: "alliance")
                 }
             }
             else {
@@ -131,7 +131,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
                 let fraction = student!.level!.truncatingRemainder(dividingBy: 1)
                 let number = student!.level! - fraction
                 levelLabel.text = "level " + String(Int(number)) + " - " + String(Int(fraction * 100)) + "%"
-                levelProgressBar.progressValue = CGFloat(student!.level! * 100 / 16)
+                levelProgressBar.progressValue = CGFloat(fraction * 100)
             } else {
                 levelLabel.text = "level 0 - 0%"
                 levelProgressBar.progressValue = 0
@@ -141,8 +141,6 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITabBarDel
         
     
         // MARK: - add RadarChart
-//        skillsChartView.axes = student!.skillsName.map { attributedAxisLabelSample1($0) }
-//        skillsChartView.addDataSet(values: student!.skillsLevel, color: .cyan)
         skillsChartView.axes = (student!.skills.map {$0.0}).map { attributedAxisLabelSample1($0) }
         skillsChartView.addDataSet(values: (student!.skills.map {$0.1}).map {$0}, color: .cyan)
     }
